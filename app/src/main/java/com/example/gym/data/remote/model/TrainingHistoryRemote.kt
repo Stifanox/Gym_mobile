@@ -1,4 +1,4 @@
-package com.example.gym.data.database.models
+package com.example.gym.data.remote.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import java.util.Date
 
 @Entity(tableName = "training_history")
-data class TrainingHistoryModel(
+data class TrainingHistoryRemote(
     @PrimaryKey val id:Int,
     @ColumnInfo(name = "user_id") val userId:Int,
     @ColumnInfo(name = "exercise_id") val exerciseId:Int,
