@@ -1,7 +1,7 @@
 package com.example.gym.di.remote
 
-import com.example.gym.data.remote.repository.ExerciseRepositoryImpl
-import com.example.gym.domain.repository.remote.ExerciseRepository
+import com.example.gym.data.remote.repository.ExercisesRepositoryImpl
+import com.example.gym.domain.repository.remote.ExercisesRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,6 +13,6 @@ abstract class RemoteModule {
 
     @Binds
     abstract fun bindExerciseRepository(
-        exerciseRepositoryImpl: ExerciseRepositoryImpl
-    ):ExerciseRepository
+        exercisesRepositoryImpl: ExercisesRepositoryImpl
+    ):ExercisesRepository
 }

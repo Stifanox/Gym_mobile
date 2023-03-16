@@ -1,6 +1,6 @@
 package com.example.gym.di
 
-import com.example.gym.data.remote.api.ExerciseApi
+import com.example.gym.data.remote.api.ExercisesApi
 import com.example.gym.data.remote.RetrofitConfiguration
 import dagger.Module
 import dagger.Provides
@@ -29,7 +29,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideExerciseApi(retrofit: Retrofit): ExerciseApi {
-        return retrofit.create(ExerciseApi::class.java)
+    fun provideExerciseApi(retrofit: Retrofit): ExercisesApi {
+        return retrofit.create(ExercisesApi::class.java)
     }
 }

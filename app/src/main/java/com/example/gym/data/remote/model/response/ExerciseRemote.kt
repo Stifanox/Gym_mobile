@@ -1,8 +1,6 @@
-package com.example.gym.data.remote.model
+package com.example.gym.data.remote.model.response
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+
 import com.google.gson.annotations.SerializedName
 
 data class ExerciseRemote(

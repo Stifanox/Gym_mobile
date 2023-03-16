@@ -1,4 +1,4 @@
-package com.example.gym.data.remote.model
+package com.example.gym.data.remote.model.response
 
 data class ResponseRemote<T>(
     val status:String,

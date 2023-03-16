@@ -5,8 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.gym.data.remote.model.ExerciseRemote
-import com.example.gym.domain.repository.remote.ExerciseRepository
+import com.example.gym.data.remote.model.response.ExerciseRemote
+import com.example.gym.domain.repository.remote.ExercisesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val exerciseRepository: ExerciseRepository
+    private val exercisesRepository: ExercisesRepository
 ) : ViewModel() {
     private var _listOfExercises = MutableStateFlow(listOf<ExerciseRemote>())
     val listOfExercises = _listOfExercises.asStateFlow()
@@ -28,7 +28,7 @@ class HomeViewModel @Inject constructor(
     fun getAllExercises() {
         viewModelScope.launch {
             try {
-                val list = exerciseRepository.getAllExercises()
+                val list = exercisesRepository.getAllExercises()
                 _listOfExercises.value = list.data
             } catch (e:IOException){
                 error = "${e.message}"

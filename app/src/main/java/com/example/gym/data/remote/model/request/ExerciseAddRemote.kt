@@ -1,4 +1,4 @@
-package com.example.gym.data.remote.model
+package com.example.gym.data.remote.model.request
 
 data class ExerciseAddRemote(
     val name:String,
