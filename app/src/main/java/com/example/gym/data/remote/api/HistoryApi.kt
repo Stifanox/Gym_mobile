@@ -1,5 +1,6 @@
 package com.example.gym.data.remote.api
 
+import com.example.gym.data.remote.model.request.HistoryAddRemote
 import com.example.gym.data.remote.model.response.ResponseRemote
 import com.example.gym.data.remote.model.response.TrainingHistoryRemote
 import retrofit2.http.Body
@@ -16,7 +17,7 @@ interface HistoryApi {
 
     @POST(PREFIX_HISTORY)
     suspend fun addNewHistory(
-        @Body historyList: List<TrainingHistoryRemote>,
+        @Body historyList: HistoryAddRemote,
         @Header("Cookie") token: String
     ): ResponseRemote<String>
 

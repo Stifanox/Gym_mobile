@@ -1,7 +1,7 @@
 package com.example.gym.di
 
-import com.example.gym.data.remote.api.ExercisesApi
 import com.example.gym.data.remote.RetrofitConfiguration
+import com.example.gym.data.remote.api.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,5 +31,29 @@ object AppModule {
     @Singleton
     fun provideExerciseApi(retrofit: Retrofit): ExercisesApi {
         return retrofit.create(ExercisesApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCyclesApi(retrofit: Retrofit):CyclesApi{
+        return retrofit.create(CyclesApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideHistoryApi(retrofit: Retrofit):HistoryApi{
+        return retrofit.create(HistoryApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideTrainingDayApi(retrofit: Retrofit): TrainingDayApi{
+        return retrofit.create(TrainingDayApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providesUserApi(retrofit: Retrofit):UserApi{
+        return retrofit.create(UserApi::class.java)
     }
 }

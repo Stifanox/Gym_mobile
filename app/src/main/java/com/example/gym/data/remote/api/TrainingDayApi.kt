@@ -1,5 +1,7 @@
 package com.example.gym.data.remote.api
 
+import com.example.gym.data.remote.model.request.TrainingDayAddRemote
+import com.example.gym.data.remote.model.request.TrainingDayRequestRemote
 import com.example.gym.data.remote.model.response.ResponseRemote
 import com.example.gym.data.remote.model.response.TrainingDayRemote
 import retrofit2.http.Body
@@ -15,11 +17,11 @@ interface TrainingDayApi {
     suspend fun getTrainingDayById(@Path("id") id: Int): ResponseRemote<List<TrainingDayRemote>>
 
     @POST(PREFIX_TRAINING_DAY)
-    suspend fun addNewTrainingDays(@Body trainingList: List<TrainingDayRemote>): ResponseRemote<String>
+    suspend fun addNewTrainingDays(@Body trainingList: TrainingDayRequestRemote<TrainingDayAddRemote>): ResponseRemote<String>
 
     @PUT(PREFIX_TRAINING_DAY)
-    suspend fun updateTrainingDays(@Body trainingList: List<TrainingDayRemote>): ResponseRemote<String>
+    suspend fun updateTrainingDays(@Body trainingList: TrainingDayRequestRemote<TrainingDayAddRemote>): ResponseRemote<String>
 
     @DELETE(PREFIX_TRAINING_DAY)
-    suspend fun deleteTrainingDays(@Body trainingIds: List<Int>): ResponseRemote<String>
+    suspend fun deleteTrainingDays(@Body trainingIds: TrainingDayRequestRemote<Int>): ResponseRemote<String>
 }
