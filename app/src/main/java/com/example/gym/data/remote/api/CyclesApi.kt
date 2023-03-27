@@ -4,6 +4,7 @@ import com.example.gym.data.remote.model.request.CycleAddRemote
 import com.example.gym.data.remote.model.request.CycleEditRemote
 import com.example.gym.data.remote.model.response.ResponseRemote
 import com.example.gym.data.remote.model.response.TrainingCycleRemote
+import okhttp3.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -33,4 +34,5 @@ interface CyclesApi {
         @Header("Cookie") token: String,
         @Body cycle: CycleEditRemote
     ): ResponseRemote<String>
+
 }

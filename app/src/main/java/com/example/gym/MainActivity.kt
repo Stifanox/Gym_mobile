@@ -1,16 +1,10 @@
 package com.example.gym
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.gym.ui.presentation.HomeScreen
+import com.example.gym.ui.presentation.navigation_screen.components.NavigationScreen
 import com.example.gym.ui.theme.GymTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,9 +12,11 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //FIXME: Temp resolve
+       requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setContent {
             GymTheme {
-                HomeScreen()
+                NavigationScreen()
             }
         }
     }

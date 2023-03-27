@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Gym</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="continue_without_login">Continue without logging in</string>
+    <string name="password_text">Password</string>
+    <string name="username">Username</string>
+    <string name="enter_username">Enter username</string>
+    <string name="enter_password">Enter password</string>
+    <string name="token">token</string>
+    <string name="token_refresh">token_refresh</string>
+    <string name="internet_error">There is a problem with internet connection. Check your internet connection and try again</string>
+    <string name="incorrect_login">Incorrect password or username. Try again.</string>
+    <string name="shared_preferences_token">com.example.gym.token</string>
+    <string name="password_again">Enter password again</string>
 </resources>
