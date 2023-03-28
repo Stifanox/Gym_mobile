@@ -31,7 +31,10 @@ fun NavGraphBuilder.loginGraph(navController: NavController) {
             })
         }
         composable(LoginRoutes.RegisterRoute.route){
-            RegisterScreen()
+            //TODO:check if it work
+            RegisterScreen({navController.navigate(LoginRoutes.LoginRoute.route){
+                popUpTo(LoginRoutes.HomeRoute.route)
+            } })
         }
     }
 }

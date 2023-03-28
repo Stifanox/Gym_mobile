@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.gym.R
 import com.example.gym.data.remote.model.request.UserLoginRemote
 import com.example.gym.domain.use_cases.login_screen.LoginUseCase
+import com.example.gym.ui.presentation.login_screen.screens.common_classes.ResponseResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -50,11 +51,14 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun setWasLoggedOnce(){
-        wasLoggedOnce = true
-    }
-
     fun login() {
+        wasLoggedOnce = true
+        if(_loginState.value.password.isEmpty() || _loginState.value.username.isEmpty()){
+            _loginState.update { currentState ->
+                currentState.copy(result = ResponseResult.Error(application.getString(R.string.input_not_filled)))
+            }
+            return
+        }
         viewModelScope.launch {
             try {
                 loginUseCase(UserLoginRemote(loginState.value.username,loginState.value.password))

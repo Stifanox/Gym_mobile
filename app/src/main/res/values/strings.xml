@@ -13,4 +13,8 @@
     <string name="incorrect_login">Incorrect password or username. Try again.</string>
     <string name="shared_preferences_token">com.example.gym.token</string>
     <string name="password_again">Enter password again</string>
+    <string name="input_not_filled">One of input is not filled.</string>
+    <string name="passwords_not_same">Passwords are not the same.</string>
+    <string name="email">Email</string>
+    <string name="username_or_mail_taken">Username or email already in use</string>
 </resources>

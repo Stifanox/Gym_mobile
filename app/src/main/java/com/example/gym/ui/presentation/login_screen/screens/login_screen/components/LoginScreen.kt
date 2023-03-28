@@ -18,13 +18,12 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.gym.R
 import com.example.gym.ui.presentation.login_screen.screens.login_screen.view_models.LoginViewModel
-import com.example.gym.ui.presentation.login_screen.screens.login_screen.view_models.ResponseResult
+import com.example.gym.ui.presentation.login_screen.screens.common_classes.ResponseResult
 
 @Composable
 fun LoginScreen(
@@ -100,10 +99,6 @@ fun LoginScreen(
         )
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = {
-            loginViewModel.setWasLoggedOnce()
-            if (loginViewModel.wasLoggedOnce && (loginState.username.isEmpty() || loginState.password.isEmpty())) {
-                return@Button
-            }
             focusManager.clearFocus()
             loginViewModel.login()
         }) {
