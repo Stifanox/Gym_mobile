@@ -112,7 +112,7 @@ fun RegisterScreen(
                 imeAction = ImeAction.Next
             )
         )
-
+        Spacer(modifier = Modifier.height(16.dp))
         TextField(
             value = registerState.email,
             isError = registerState.email.isEmpty() && registerViewModel.wasRegisteredOnce,

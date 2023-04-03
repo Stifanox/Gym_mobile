@@ -80,14 +80,17 @@ class RegisterViewModel @Inject constructor(
                         email = email
                     )
                 )
-                if (response.status == StatusRemote.Error.status) {
-                    _registerState.update { currentState ->
-                        currentState.copy(result = ResponseResult.Error(application.getString(R.string.username_or_mail_taken)))
+
+                when(response.status){
+                    StatusRemote.Error.status ->{
+                        _registerState.update { currentState ->
+                            currentState.copy(result = ResponseResult.Error(application.getString(R.string.username_or_mail_taken)))
+                        }
                     }
-                }
-                else if(response.status == StatusRemote.Success.status){
-                    _registerState.update { currentState ->
-                        currentState.copy(result = ResponseResult.Success)
+                    StatusRemote.Success.status -> {
+                        _registerState.update { currentState ->
+                            currentState.copy(result = ResponseResult.Success)
+                        }
                     }
                 }
             } catch (e: IOException) {
