@@ -59,6 +59,7 @@ fun LoginScreen(
             label = @Composable { Text(text = stringResource(R.string.username)) },
             singleLine = true,
             isError = loginState.username.isEmpty() && loginViewModel.wasLoggedOnce,
+
             maxLines = 1,
             placeholder = {
                 Text(

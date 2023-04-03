@@ -18,22 +18,30 @@ fun NavGraphBuilder.loginGraph(navController: NavController) {
             HomeScreen(
                 navigateToLoginScreen = { navController.navigate(LoginRoutes.LoginRoute.route) },
                 navigateToRegisterScreen = { navController.navigate(LoginRoutes.RegisterRoute.route) },
-                navigateToMainScreen = { navController.navigate(MainRoutes.HomeRoute.route){
-                    popUpTo(LoginRoutes.HomeRoute.route){inclusive=true}
-                } }
+                navigateToMainScreen = {
+                    navController.navigate(MainRoutes.HomeRoute.route) {
+                        popUpTo(LoginRoutes.HomeRoute.route) {
+                            inclusive = true
+                        }
+                        launchSingleTop = true
+                    }
+                }
             )
         }
         composable(LoginRoutes.LoginRoute.route) {
             LoginScreen({
                 navController.navigate(MainRoutes.HomeRoute.route) {
-                    popUpTo(LoginRoutes.HomeRoute.route){inclusive = true}
+                    popUpTo(LoginRoutes.HomeRoute.route) { inclusive = true }
                 }
             })
         }
-        composable(LoginRoutes.RegisterRoute.route){
-            RegisterScreen({navController.navigate(LoginRoutes.LoginRoute.route){
-                popUpTo(LoginRoutes.HomeRoute.route)
-            } })
+        composable(LoginRoutes.RegisterRoute.route) {
+            RegisterScreen({
+                navController.navigate(LoginRoutes.LoginRoute.route) {
+                    popUpTo(LoginRoutes.HomeRoute.route)
+                }
+            })
         }
     }
 }
+//

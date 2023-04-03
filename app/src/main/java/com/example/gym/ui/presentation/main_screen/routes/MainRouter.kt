@@ -1,5 +1,6 @@
 package com.example.gym.ui.presentation.main_screen.routes
 
+import androidx.compose.foundation.layout.Box
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable

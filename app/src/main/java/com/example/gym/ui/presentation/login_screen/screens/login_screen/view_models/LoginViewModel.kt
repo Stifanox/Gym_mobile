@@ -40,6 +40,7 @@ class LoginViewModel @Inject constructor(
     }
 
     fun setUsername(username: String) {
+        if(username.length >= 25) return
         _loginState.update { currentState ->
             currentState.copy(username = username)
         }

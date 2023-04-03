@@ -1,6 +1,7 @@
 package com.example.gym.ui.presentation.login_screen.screens.register_screen.view_models
 
 import android.app.Application
+import android.util.Patterns
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -39,6 +40,7 @@ class RegisterViewModel @Inject constructor(
     }
 
     fun setUsername(username: String) {
+        if (username.length >= 25) return
         _registerState.update { currentState ->
             currentState.copy(username = username)
         }
@@ -50,59 +52,78 @@ class RegisterViewModel @Inject constructor(
         }
     }
 
-    fun setEmail(email:String){
-        _registerState.update { currentState->
+    fun setEmail(email: String) {
+        _registerState.update { currentState ->
             currentState.copy(email = email)
         }
     }
-    fun registerUser() {
-        wasRegisteredOnce = true
-        val (username, password, passwordAgain, email) = _registerState.value
 
+        fun registerUser() {
+            wasRegisteredOnce = true
+            val (username, password, passwordAgain, email) = _registerState.value
+
+            val isValidInputs = checkInputs(username,password,passwordAgain,email)
+            if(!isValidInputs) return
+
+            viewModelScope.launch {
+                try {
+                    val response = registerUseCase(
+                        UserAddRemote(
+                            username = username,
+                            password = password,
+                            email = email
+                        )
+                    )
+
+                    when (response.status) {
+                        StatusRemote.Error.status -> {
+                            _registerState.update { currentState ->
+                                currentState.copy(result = ResponseResult.Error(application.getString(R.string.username_or_mail_taken)))
+                            }
+                        }
+                        StatusRemote.Success.status -> {
+                            _registerState.update { currentState ->
+                                currentState.copy(result = ResponseResult.Success)
+                            }
+                        }
+                    }
+                } catch (e: IOException) {
+                    _registerState.update { currentState ->
+                        currentState.copy(result = ResponseResult.Error(application.getString(R.string.internet_error)))
+                    }
+                } catch (e: HttpException) {
+                    //TODO: Think how to implement this because server doesn't return 403 code so it won't happened
+                    _registerState.update { currentState ->
+                        currentState.copy(result = ResponseResult.Error("xd"))
+                    }
+                }
+            }
+        }
+
+    private fun checkInputs(
+        username: String,
+        password: String,
+        passwordAgain: String,
+        email: String
+    ): Boolean {
         if (passwordAgain.isEmpty() || password.isEmpty() || username.isEmpty() || email.isEmpty()) {
             _registerState.update { currentState ->
                 currentState.copy(result = ResponseResult.Error(application.getString(R.string.input_not_filled)))
             }
-            return
+            return false
         }
         if (passwordAgain != password) {
             _registerState.update { currentState ->
                 currentState.copy(result = ResponseResult.Error(application.getString(R.string.passwords_not_same)))
             }
-            return
+            return false
         }
-        viewModelScope.launch {
-            try {
-                val response = registerUseCase(
-                    UserAddRemote(
-                        username = username,
-                        password = password,
-                        email = email
-                    )
-                )
-
-                when(response.status){
-                    StatusRemote.Error.status ->{
-                        _registerState.update { currentState ->
-                            currentState.copy(result = ResponseResult.Error(application.getString(R.string.username_or_mail_taken)))
-                        }
-                    }
-                    StatusRemote.Success.status -> {
-                        _registerState.update { currentState ->
-                            currentState.copy(result = ResponseResult.Success)
-                        }
-                    }
-                }
-            } catch (e: IOException) {
-                _registerState.update { currentState ->
-                    currentState.copy(result = ResponseResult.Error(application.getString(R.string.internet_error)))
-                }
-            } catch (e: HttpException) {
-                //TODO: Think how to implement this because server doesn't return 403 code so it won't happened
-                _registerState.update { currentState ->
-                    currentState.copy(result = ResponseResult.Error("xd"))
-                }
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            _registerState.update { currentState ->
+                currentState.copy(result = ResponseResult.Error(application.getString(R.string.invalid_email)))
             }
+            return false
         }
+        return true
     }
 }

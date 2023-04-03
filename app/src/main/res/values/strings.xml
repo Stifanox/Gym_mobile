@@ -17,4 +17,7 @@
     <string name="passwords_not_same">Passwords are not the same.</string>
     <string name="email">Email</string>
     <string name="username_or_mail_taken">Username or email already in use</string>
+    <string name="invalid_email">Invalid email</string>
+    <string name="login_screen_text">Login screen</string>
+    <string name="manage_exercises">Manage exercises</string>
 </resources>
