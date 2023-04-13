@@ -1,5 +1,6 @@
 package com.example.gym.ui.presentation.exercise_screen.screens.exercise_list_screen.components
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Button
@@ -20,17 +21,35 @@ fun ExerciseListScreen(
 ) {
     val state by exerciseListViewModel.exerciseState.collectAsState(initial = listOf())
 
-    Button(onClick = { exerciseListViewModel.fetchNewData()}) {
-        Text(text = "Fetch")
-    }
+
     if (state.isEmpty()) {
-        Text(text = "There is no exercises found. Fetch it from remote source or add new one.")
+        Column {
+            Button(onClick = { exerciseListViewModel.fetchNewData() }) {
+                Text(text = "Fetch")
+            }
+
+            Text(text = "There is no exercises found. Fetch it from remote source or add new one.")
+        }
         return
     }
 
     LazyColumn {
-        items(state) {
-            Text(text = it.exerciseName.capitalize(java.util.Locale.ROOT))
+        item {
+            Button(onClick = { exerciseListViewModel.fetchNewData() }) {
+                Text(text = "Fetch")
+            }
+        }
+        items(state) { exercise ->
+            ExerciseListItem(
+                text = exercise.exerciseName.replaceFirstChar { char -> char.uppercase() },
+                type = exercise.exerciseType,
+                deleteExerciseFromDatabase = {
+                    exerciseListViewModel.deleteExerciseFromDatabase(
+                        exercise
+                    )
+                },
+                deleteExerciseFromRemote = { exerciseListViewModel.deleteExerciseFromRemote(exercise) }
+            )
         }
     }
 

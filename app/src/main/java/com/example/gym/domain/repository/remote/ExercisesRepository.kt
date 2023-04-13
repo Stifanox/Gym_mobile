@@ -10,4 +10,6 @@ interface ExercisesRepository {
     suspend fun getExerciseById(id:Int): ResponseRemote<ExerciseRemote>
 
     suspend fun addNewExercise(exercise: ExerciseAddRemote, token:String): ResponseRemote<String>
+
+    suspend fun deleteExerciseById(id: Int,token: String): ResponseRemote<String>
 }

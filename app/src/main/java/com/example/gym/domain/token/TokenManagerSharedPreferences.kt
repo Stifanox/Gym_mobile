@@ -24,7 +24,8 @@ class TokenManagerSharedPreferences {
                     context.getString(R.string.shared_preferences_token),
                     Context.MODE_PRIVATE
                 )
-            return shared.getString(context.getString(R.string.token),"") as String
+            val token = shared.getString(context.getString(R.string.token),"") as String
+            return "JWT=$token"
         }
     }
 }

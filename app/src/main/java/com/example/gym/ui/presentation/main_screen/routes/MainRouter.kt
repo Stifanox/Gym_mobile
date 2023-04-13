@@ -8,7 +8,7 @@ import androidx.navigation.navigation
 import com.example.gym.ui.presentation.main_screen.screens.home_screen.components.HomeScreen
 
 fun NavGraphBuilder.mainGraph(navController: NavController){
-    navigation(MainRoutes.HomeRoute.route,MainRoutes.PREFIX.route){
+    navigation(MainRoutes.HomeRoute.route, MainRoutes.PREFIX.route){
         composable(MainRoutes.HomeRoute.route){
             HomeScreen()
         }

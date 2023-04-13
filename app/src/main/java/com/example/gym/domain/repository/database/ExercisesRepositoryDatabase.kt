@@ -10,4 +10,6 @@ interface ExercisesRepositoryDatabase {
     suspend fun addNewExercise(exercise: ExerciseDatabase)
 
     suspend fun addNewExerciseList(exercises:List<ExerciseDatabase>)
+
+    suspend fun deleteExercise(exercise: ExerciseDatabase)
 }

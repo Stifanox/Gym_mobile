@@ -4,7 +4,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.example.gym.ui.presentation.login_screen.screens.home_screen.components.HomeScreen
+import com.example.gym.ui.presentation.home_screen.components.HomeScreen
 import com.example.gym.ui.presentation.login_screen.screens.login_screen.components.LoginScreen
 import com.example.gym.ui.presentation.login_screen.screens.register_screen.components.RegisterScreen
 import com.example.gym.ui.presentation.main_screen.routes.MainRoutes

@@ -1,9 +1,6 @@
 package com.example.gym.data.database.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.gym.data.database.model.ExerciseDatabase
 import kotlinx.coroutines.flow.Flow
 
@@ -13,10 +10,12 @@ interface ExerciseDao {
     @Query("SELECT * FROM exercise")
     fun getAllExercises():Flow<List<ExerciseDatabase>>
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addNewExercise(exercise:ExerciseDatabase)
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addNewExerciseList(exercises:List<ExerciseDatabase>)
 
+    @Delete
+    fun deleteExercise(exercise: ExerciseDatabase)
 }

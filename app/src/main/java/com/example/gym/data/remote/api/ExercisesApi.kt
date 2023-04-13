@@ -4,6 +4,7 @@ import com.example.gym.data.remote.model.request.ExerciseAddRemote
 import com.example.gym.data.remote.model.response.ExerciseRemote
 import com.example.gym.data.remote.model.response.ResponseRemote
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -20,6 +21,12 @@ interface ExercisesApi {
     @POST(PREFIX_EXERCISES)
     suspend fun addNewExercise(
         @Body exercise: ExerciseAddRemote,
+        @Header("Cookie") token: String
+    ): ResponseRemote<String>
+
+    @DELETE("$PREFIX_EXERCISES/{id}")
+    suspend fun deleteExerciseById(
+        @Path("id") id: Int,
         @Header("Cookie") token: String
     ): ResponseRemote<String>
 }

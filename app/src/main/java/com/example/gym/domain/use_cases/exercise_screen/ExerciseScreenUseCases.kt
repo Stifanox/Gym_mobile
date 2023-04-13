@@ -4,5 +4,7 @@ import javax.inject.Inject
 
 data class ExerciseScreenUseCases @Inject constructor (
     val fetchExercisesUseCase: FetchExercisesUseCase,
-    val saveExercisesListUseCase: SaveExercisesListUseCase
+    val saveExercisesListUseCase: SaveExercisesListUseCase,
+    val deleteExerciseFromDatabaseUseCase: DeleteExerciseFromDatabaseUseCase,
+    val deleteExerciseFromRemoteUseCase: DeleteExerciseFromRemoteUseCase
 )

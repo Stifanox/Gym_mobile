@@ -1,4 +1,4 @@
-package com.example.gym.ui.presentation.login_screen.screens.home_screen.components
+package com.example.gym.ui.presentation.home_screen.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
