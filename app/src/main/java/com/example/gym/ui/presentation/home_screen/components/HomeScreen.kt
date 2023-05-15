@@ -32,6 +32,8 @@ fun HomeScreen(
 
         Button(onClick = {
             navigateToMainScreen()
+            //FIXME: Temp solution. It's done to ensure it won't log out user if he goes to login screen then click this button.
+            if(TokenManagerSharedPreferences.getTokenFromSharedPreferences(context).length > 10) return@Button
             TokenManagerSharedPreferences.saveTokenToSharedPreferences(context,"dummy","dummy")
         }) { Text(text = stringResource(R.string.continue_without_login)) }
     }

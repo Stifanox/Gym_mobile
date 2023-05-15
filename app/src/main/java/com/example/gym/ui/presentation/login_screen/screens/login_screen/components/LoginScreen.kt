@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.gym.R
+import com.example.gym.domain.fetching_status.FetchingStatus
 import com.example.gym.ui.presentation.login_screen.screens.login_screen.view_models.LoginViewModel
 import com.example.gym.ui.presentation.login_screen.screens.common_classes.ResponseResult
 
@@ -35,14 +36,14 @@ fun LoginScreen(
     val loginState by loginViewModel.loginState.collectAsState()
 
     LaunchedEffect(key1 = loginState.result) {
-        if (loginState.result is ResponseResult.Error) {
+        if (loginState.result is FetchingStatus.Error) {
             Toast.makeText(
                 context,
-                (loginState.result as ResponseResult.Error).error,
+                (loginState.result as FetchingStatus.Error).error,
                 Toast.LENGTH_SHORT
             ).show()
-            loginViewModel.setError((loginState.result as ResponseResult.Error).error)
-        } else if (loginState.result is ResponseResult.Success) {
+            loginViewModel.setError((loginState.result as FetchingStatus.Error).error)
+        } else if (loginState.result is FetchingStatus.Success) {
             navigateToHomeScreen()
         }
     }

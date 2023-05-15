@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.gym.R
+import com.example.gym.domain.fetching_status.FetchingStatus
 import com.example.gym.ui.presentation.login_screen.screens.common_classes.ResponseResult
 import com.example.gym.ui.presentation.login_screen.screens.register_screen.view_models.RegisterViewModel
 
@@ -36,14 +37,14 @@ fun RegisterScreen(
     val context = LocalContext.current
 
     LaunchedEffect(key1 = registerState.result) {
-        if (registerState.result is ResponseResult.Error) {
+        if (registerState.result is FetchingStatus.Error) {
             Toast.makeText(
                 context,
-                (registerState.result as ResponseResult.Error).error,
+                (registerState.result as FetchingStatus.Error).error,
                 Toast.LENGTH_SHORT
             ).show()
         }
-        else if (registerState.result is ResponseResult.Success){
+        else if (registerState.result is FetchingStatus.Success){
             navigateToLogin()
         }
     }

@@ -20,4 +20,9 @@
     <string name="invalid_email">Invalid email</string>
     <string name="login_screen_text">Login screen</string>
     <string name="manage_exercises">Manage exercises</string>
+    <string name="database_remove_problem">There was a problem with removing exercise</string>
+    <string name="remote_delete_error">There was a problem with deleting exercise from server</string>
+    <string name="exercise_delete_remote_error">Couldn\'t delete exercise. Are logged in?</string>
+    <string name="add_new_exercise">Add new exercise</string>
+    <string name="fetch_exercises">Fetch exercises from remote</string>
 </resources>

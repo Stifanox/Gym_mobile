@@ -1,6 +1,7 @@
 package com.example.gym.di
 
 import android.app.Application
+import android.content.Context
 import androidx.room.Room
 import com.example.gym.data.database.GymDatabase
 import com.example.gym.data.database.dao.CycleDao
@@ -8,9 +9,12 @@ import com.example.gym.data.database.dao.ExerciseDao
 import com.example.gym.data.database.dao.HistoryDao
 import com.example.gym.data.remote.RetrofitConfiguration
 import com.example.gym.data.remote.api.*
+import com.example.gym.domain.connection.ConnectivityObserver
+import com.example.gym.domain.connection.NetworkConnectivityObserver
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import javax.inject.Singleton
@@ -82,5 +86,11 @@ object AppModule {
     @Singleton
     fun providesUserApi(retrofit: Retrofit): UserApi {
         return retrofit.create(UserApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideConnectivityObserver(@ApplicationContext context:Context):ConnectivityObserver{
+        return NetworkConnectivityObserver(context)
     }
 }

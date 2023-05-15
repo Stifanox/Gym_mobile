@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.gym.R
 import com.example.gym.data.remote.model.StatusRemote
 import com.example.gym.data.remote.model.request.UserAddRemote
+import com.example.gym.domain.fetching_status.FetchingStatus
 import com.example.gym.domain.use_cases.register_screen.RegisterUseCase
 import com.example.gym.ui.presentation.login_screen.screens.common_classes.ResponseResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -78,23 +79,23 @@ class RegisterViewModel @Inject constructor(
                     when (response.status) {
                         StatusRemote.Error.status -> {
                             _registerState.update { currentState ->
-                                currentState.copy(result = ResponseResult.Error(application.getString(R.string.username_or_mail_taken)))
+                                currentState.copy(result = FetchingStatus.Error(application.getString(R.string.username_or_mail_taken)))
                             }
                         }
                         StatusRemote.Success.status -> {
                             _registerState.update { currentState ->
-                                currentState.copy(result = ResponseResult.Success)
+                                currentState.copy(result = FetchingStatus.Success)
                             }
                         }
                     }
                 } catch (e: IOException) {
                     _registerState.update { currentState ->
-                        currentState.copy(result = ResponseResult.Error(application.getString(R.string.internet_error)))
+                        currentState.copy(result = FetchingStatus.Error(application.getString(R.string.internet_error)))
                     }
                 } catch (e: HttpException) {
                     //TODO: Think how to implement this because server doesn't return 403 code so it won't happened
                     _registerState.update { currentState ->
-                        currentState.copy(result = ResponseResult.Error("xd"))
+                        currentState.copy(result = FetchingStatus.Error("xd"))
                     }
                 }
             }
@@ -108,19 +109,19 @@ class RegisterViewModel @Inject constructor(
     ): Boolean {
         if (passwordAgain.isEmpty() || password.isEmpty() || username.isEmpty() || email.isEmpty()) {
             _registerState.update { currentState ->
-                currentState.copy(result = ResponseResult.Error(application.getString(R.string.input_not_filled)))
+                currentState.copy(result = FetchingStatus.Error(application.getString(R.string.input_not_filled)))
             }
             return false
         }
         if (passwordAgain != password) {
             _registerState.update { currentState ->
-                currentState.copy(result = ResponseResult.Error(application.getString(R.string.passwords_not_same)))
+                currentState.copy(result = FetchingStatus.Error(application.getString(R.string.passwords_not_same)))
             }
             return false
         }
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             _registerState.update { currentState ->
-                currentState.copy(result = ResponseResult.Error(application.getString(R.string.invalid_email)))
+                currentState.copy(result = FetchingStatus.Error(application.getString(R.string.invalid_email)))
             }
             return false
         }

@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gym.R
 import com.example.gym.data.remote.model.request.UserLoginRemote
+import com.example.gym.domain.fetching_status.FetchingStatus
 import com.example.gym.domain.use_cases.login_screen.LoginUseCase
 import com.example.gym.ui.presentation.login_screen.screens.common_classes.ResponseResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -48,7 +49,7 @@ class LoginViewModel @Inject constructor(
 
     fun setError(errorMessage:String){
         _loginState.update { currentState ->
-            currentState.copy(result = ResponseResult.Error(errorMessage))
+            currentState.copy(result = FetchingStatus.Error(errorMessage))
         }
     }
 
@@ -56,7 +57,7 @@ class LoginViewModel @Inject constructor(
         wasLoggedOnce = true
         if(_loginState.value.password.isEmpty() || _loginState.value.username.isEmpty()){
             _loginState.update { currentState ->
-                currentState.copy(result = ResponseResult.Error(application.getString(R.string.input_not_filled)))
+                currentState.copy(result = FetchingStatus.Error(application.getString(R.string.input_not_filled)))
             }
             return
         }
@@ -64,15 +65,15 @@ class LoginViewModel @Inject constructor(
             try {
                 loginUseCase(UserLoginRemote(loginState.value.username,loginState.value.password))
                 _loginState.update { currentState ->
-                    currentState.copy(result = ResponseResult.Success)
+                    currentState.copy(result = FetchingStatus.Success)
                 }
             }catch (e:IOException){
                 _loginState.update { currentState ->
-                    currentState.copy(result = ResponseResult.Error(application.getString(R.string.internet_error)))
+                    currentState.copy(result = FetchingStatus.Error(application.getString(R.string.internet_error)))
                 }
             } catch (e:HttpException){
                 _loginState.update { currentState ->
-                    currentState.copy(result = ResponseResult.Error(application.getString(R.string.incorrect_login)))
+                    currentState.copy(result = FetchingStatus.Error(application.getString(R.string.incorrect_login)))
                 }
             }
         }
