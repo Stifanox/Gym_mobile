@@ -25,4 +25,7 @@
     <string name="exercise_delete_remote_error">Couldn\'t delete exercise. Are logged in?</string>
     <string name="add_new_exercise">Add new exercise</string>
     <string name="fetch_exercises">Fetch exercises from remote</string>
+    <string name="with_weight">With weight</string>
+    <string name="without_weight">Without weight</string>
+    <string name="with_time">With time</string>
 </resources>

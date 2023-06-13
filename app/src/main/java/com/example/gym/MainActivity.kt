@@ -4,7 +4,7 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.example.gym.ui.presentation.navigation_screen.components.NavigationScreen
+import com.example.gym.navigation_feature.ui.components.NavigationScreen
 import com.example.gym.ui.theme.GymTheme
 import dagger.hilt.android.AndroidEntryPoint
 
