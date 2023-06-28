@@ -18,7 +18,7 @@ fun ExerciseListItem(
     type: Int,
     deleteExerciseFromDatabase: () -> Unit,
     deleteExerciseFromRemote: () -> Unit,
-    isConnectedToNetwork: ConnectivityObserver.Status
+    isConnectedToNetwork: ConnectivityObserver.Status,
 ) {
     var howManyTimesClicked by remember {
         mutableStateOf(0)

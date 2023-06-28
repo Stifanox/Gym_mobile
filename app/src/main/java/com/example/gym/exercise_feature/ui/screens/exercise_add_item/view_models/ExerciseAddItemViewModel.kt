@@ -45,8 +45,6 @@ class ExerciseAddItemViewModel @Inject constructor(
                 exerciseScreenUseCases.addExerciseToDatabaseUseCase(_exerciseState.value.toDatabase())
             } catch (e: IOException) {
                 //TODO:implement
-            } catch (e: HttpException) {
-                //TODO:implement
             }
         }
     }

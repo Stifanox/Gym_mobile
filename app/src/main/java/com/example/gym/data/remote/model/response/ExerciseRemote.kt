@@ -11,5 +11,5 @@ data class ExerciseRemote(
 )
 
 fun ExerciseRemote.toDatabase():ExerciseDatabase {
-   return ExerciseDatabase(this.id,this.exerciseName,this.exerciseType)
+   return ExerciseDatabase(0,this.id,this.exerciseName,this.exerciseType)
 }

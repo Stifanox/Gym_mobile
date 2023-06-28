@@ -6,7 +6,7 @@ import com.example.gym.data.remote.model.response.ExerciseRemote
 
 data class ExerciseItem(
     val exerciseName:String = "",
-    val type:Int = 0
+    val type:Int = 1
 )
 
 fun ExerciseItem.toRemote() : ExerciseAddRemote{
@@ -14,6 +14,5 @@ fun ExerciseItem.toRemote() : ExerciseAddRemote{
 }
 
 fun ExerciseItem.toDatabase() : ExerciseDatabase{
-    //FIXME: think of a way to not collide with other items on database
-    return ExerciseDatabase(0,this.exerciseName,this.type)
+    return ExerciseDatabase(0,id_remote = null, exerciseName =  this.exerciseName, exerciseType =  this.type)
 }

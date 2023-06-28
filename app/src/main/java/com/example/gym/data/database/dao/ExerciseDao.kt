@@ -10,12 +10,15 @@ interface ExerciseDao {
     @Query("SELECT * FROM exercise")
     fun getAllExercises():Flow<List<ExerciseDatabase>>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addNewExercise(exercise:ExerciseDatabase)
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addNewExerciseList(exercises:List<ExerciseDatabase>)
 
     @Delete
     fun deleteExercise(exercise: ExerciseDatabase)
+
+    @Query("DELETE FROM exercise WHERE id NOT IN (SELECT * FROM exercise GROUP BY exercise_name WHERE)")
+    fun removeDuplicates()
 }

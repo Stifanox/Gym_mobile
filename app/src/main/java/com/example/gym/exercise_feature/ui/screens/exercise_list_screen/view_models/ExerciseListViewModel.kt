@@ -82,8 +82,9 @@ class ExerciseListViewModel @Inject constructor(
     fun deleteExerciseFromRemote(exercise: ExerciseDatabase) {
         viewModelScope.launch {
             try {
-                val response = exerciseScreenUseCases.deleteExerciseFromRemoteUseCase(exercise.id)
                 deleteExerciseFromDatabase(exercise)
+                if (exercise.id_remote == null) return@launch
+                val response = exerciseScreenUseCases.deleteExerciseFromRemoteUseCase(exercise.id_remote)
                 when (response.status) {
                     StatusRemote.Success.status -> {
                         _remoteDeleteState.update {
