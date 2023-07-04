@@ -16,11 +16,6 @@ import com.example.gym.data.database.model.TrainingHistoryDatabase
 //    version = 1,
 //    exportSchema = true
 //)
-//abstract class GymDatabase:RoomDatabase() {
-//    abstract fun cycleDao():CycleDao
-//    abstract fun exerciseDao():ExerciseDao
-//    abstract fun historyDao():HistoryDao
-//}
 
 //@Database(
 //    entities = [ExerciseDatabase::class, TrainingCycleDatabase::class, TrainingDayDatabase::class, TrainingHistoryDatabase::class],
@@ -30,17 +25,30 @@ import com.example.gym.data.database.model.TrainingHistoryDatabase
 //    ],
 //     exportSchema = true
 //)
-//abstract class GymDatabase:RoomDatabase() {
-//    abstract fun cycleDao():CycleDao
-//    abstract fun exerciseDao():ExerciseDao
-//    abstract fun historyDao():HistoryDao
-//}
+
+//@Database(
+//    entities = [ExerciseDatabase::class, TrainingCycleDatabase::class, TrainingDayDatabase::class, TrainingHistoryDatabase::class],
+//    version = 3,
+//    autoMigrations = [
+//        AutoMigration(2,3)
+//    ],
+//    exportSchema = true
+//)
+
+//@Database(
+//    entities = [ExerciseDatabase::class, TrainingCycleDatabase::class, TrainingDayDatabase::class, TrainingHistoryDatabase::class],
+//    version = 4,
+//    autoMigrations = [
+//        AutoMigration(3,4)
+//    ],
+//    exportSchema = true
+//)
 
 @Database(
     entities = [ExerciseDatabase::class, TrainingCycleDatabase::class, TrainingDayDatabase::class, TrainingHistoryDatabase::class],
-    version = 3,
+    version = 5,
     autoMigrations = [
-        AutoMigration(2,3)
+        AutoMigration(4,5)
     ],
     exportSchema = true
 )

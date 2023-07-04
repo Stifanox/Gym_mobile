@@ -15,4 +15,8 @@ class ExercisesRepositoryDatabaseImpl @Inject constructor(
 
     override suspend fun addNewExerciseList(exercises:List<ExerciseDatabase>) = exerciseDao.addNewExerciseList(exercises)
     override suspend fun deleteExercise(exercise: ExerciseDatabase) = exerciseDao.deleteExercise(exercise)
+
+    override suspend fun removeDuplicates() = exerciseDao.removeDuplicates()
+
+
 }

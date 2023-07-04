@@ -1,8 +1,10 @@
 package com.example.gym.exercise_feature.ui.screens.exercise_add_item.view_models
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.gym.domain.repository.database.ExercisesRepositoryDatabase
 import com.example.gym.domain.token.TokenManagerSharedPreferences
 import com.example.gym.exercise_feature.domain.use_cases.ExerciseScreenUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -43,6 +45,7 @@ class ExerciseAddItemViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 exerciseScreenUseCases.addExerciseToDatabaseUseCase(_exerciseState.value.toDatabase())
+                this@ExerciseAddItemViewModel.removeDuplicates()
             } catch (e: IOException) {
                 //TODO:implement
             }
@@ -65,8 +68,11 @@ class ExerciseAddItemViewModel @Inject constructor(
     }
 
     fun addItemToRemoteAndDatabase() {
-        this.addItemToDatabase()
         this.addItemToRemote()
+        this.addItemToDatabase()
     }
 
+   private suspend fun removeDuplicates(){
+       exerciseScreenUseCases.removeDuplicatesUseCase()
+   }
 }

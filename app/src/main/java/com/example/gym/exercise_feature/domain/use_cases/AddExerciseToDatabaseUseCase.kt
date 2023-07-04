@@ -1,5 +1,6 @@
 package com.example.gym.exercise_feature.domain.use_cases
 
+import android.util.Log
 import com.example.gym.data.database.model.ExerciseDatabase
 import com.example.gym.domain.repository.database.ExercisesRepositoryDatabase
 import kotlinx.coroutines.CoroutineScope

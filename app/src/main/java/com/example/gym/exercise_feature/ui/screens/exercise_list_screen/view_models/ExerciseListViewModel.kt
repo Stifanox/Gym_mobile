@@ -113,6 +113,7 @@ class ExerciseListViewModel @Inject constructor(
         val exerciseMapped = exercises.map { it.toDatabase() }
         viewModelScope.launch(Dispatchers.IO) {
             exerciseScreenUseCases.saveExercisesListUseCase(exerciseMapped)
+            exerciseScreenUseCases.removeDuplicatesUseCase()
         }
     }
 }

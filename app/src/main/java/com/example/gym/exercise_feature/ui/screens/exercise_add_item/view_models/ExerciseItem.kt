@@ -1,8 +1,10 @@
 package com.example.gym.exercise_feature.ui.screens.exercise_add_item.view_models
 
+import androidx.compose.ui.text.toLowerCase
 import com.example.gym.data.database.model.ExerciseDatabase
 import com.example.gym.data.remote.model.request.ExerciseAddRemote
 import com.example.gym.data.remote.model.response.ExerciseRemote
+import java.util.*
 
 data class ExerciseItem(
     val exerciseName:String = "",
@@ -14,5 +16,6 @@ fun ExerciseItem.toRemote() : ExerciseAddRemote{
 }
 
 fun ExerciseItem.toDatabase() : ExerciseDatabase{
-    return ExerciseDatabase(0,id_remote = null, exerciseName =  this.exerciseName, exerciseType =  this.type)
+    //FIXME: setting lowercase in this call might be bad in the future
+    return ExerciseDatabase(0,id_remote = null, exerciseName =  this.exerciseName.lowercase(), exerciseType =  this.type)
 }

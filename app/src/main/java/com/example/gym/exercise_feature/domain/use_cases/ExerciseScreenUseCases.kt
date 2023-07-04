@@ -8,5 +8,6 @@ data class ExerciseScreenUseCases @Inject constructor (
     val deleteExerciseFromDatabaseUseCase: DeleteExerciseFromDatabaseUseCase,
     val deleteExerciseFromRemoteUseCase: DeleteExerciseFromRemoteUseCase,
     val addExerciseToDatabaseUseCase: AddExerciseToDatabaseUseCase,
-    val addExerciseToRemoteUseCase: AddExerciseToRemoteUseCase
+    val addExerciseToRemoteUseCase: AddExerciseToRemoteUseCase,
+    val removeDuplicatesUseCase:RemoveDuplicatesUseCase
 )
