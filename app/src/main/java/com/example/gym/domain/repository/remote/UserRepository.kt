@@ -9,4 +9,6 @@ interface UserRepository {
     suspend fun registerUser(user: UserAddRemote): ResponseRemote<String>
 
     suspend fun loginUser(user: UserLoginRemote):ResponseRemote<TokenRemote>
+
+    suspend fun getId(token:String):ResponseRemote<String>
 }

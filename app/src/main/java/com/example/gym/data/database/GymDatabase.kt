@@ -44,11 +44,20 @@ import com.example.gym.data.database.model.TrainingHistoryDatabase
 //    exportSchema = true
 //)
 
+//@Database(
+//    entities = [ExerciseDatabase::class, TrainingCycleDatabase::class, TrainingDayDatabase::class, TrainingHistoryDatabase::class],
+//    version = 5,
+//    autoMigrations = [
+//        AutoMigration(4,5)
+//    ],
+//    exportSchema = true
+//)
+
 @Database(
     entities = [ExerciseDatabase::class, TrainingCycleDatabase::class, TrainingDayDatabase::class, TrainingHistoryDatabase::class],
-    version = 5,
+    version = 6,
     autoMigrations = [
-        AutoMigration(4,5)
+        AutoMigration(5,6)
     ],
     exportSchema = true
 )

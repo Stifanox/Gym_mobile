@@ -28,4 +28,11 @@
     <string name="with_weight">With weight</string>
     <string name="without_weight">Without weight</string>
     <string name="with_time">With time</string>
+    <string name="manage_cycles">Manage cycles</string>
+    <string name="add_cycle">Add cycle</string>
+    <string name="get_cycle_from_server">Get cycles from server</string>
+    <string name="add_item_to_database">Add Item To Database</string>
+    <string name="add_item_to_remote">Add Item To Remote</string>
+    <string name="add_item_to_remote_and_database">Add Item To Database and Remote</string>
+    <string name="database_save_error">There was an error while saving item</string>
 </resources>

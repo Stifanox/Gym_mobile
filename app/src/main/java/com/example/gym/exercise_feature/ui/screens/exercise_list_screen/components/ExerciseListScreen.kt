@@ -57,7 +57,7 @@ fun ExerciseListScreen(
 
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn {
-            items(state, key = {item -> item.id  }) { exercise ->
+            items(state.sortedBy { item -> item.exerciseName }, key = {item -> item.id  }) { exercise ->
                 ExerciseListItem(
                     text = exercise.exerciseName.replaceFirstChar { char -> char.uppercase() },
                     type = exercise.exerciseType,

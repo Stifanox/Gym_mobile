@@ -11,10 +11,10 @@ import com.example.gym.exercise_feature.ui.screens.exercise_add_item.view_models
 
 //FIXME: Maybe lift this class to other file
 
-sealed class ExerciseType(type: Int) {
-    data class WITH_WEIGHT(val type: Int = 1) : ExerciseType(type)
-    data class WITHOUT_WEIGHT(val type: Int = 2) : ExerciseType(type)
-    data class WITH_TIME(val type: Int = 3) : ExerciseType(type)
+sealed class ExerciseType() {
+    data class WITH_WEIGHT(val type: Int = 1) : ExerciseType()
+    data class WITHOUT_WEIGHT(val type: Int = 2) : ExerciseType()
+    data class WITH_TIME(val type: Int = 3) : ExerciseType()
 }
 
 @Composable
@@ -26,7 +26,7 @@ fun ExerciseAddItem(
     var isContextMenuVisible by rememberSaveable {
         mutableStateOf(false)
     }
-    Column() {
+    Column {
         TextField(
             value = exerciseState.exerciseName,
             onValueChange = { exerciseAddItemViewModel.setExerciseName(it) })
@@ -48,19 +48,19 @@ fun ExerciseAddItem(
             exerciseAddItemViewModel.addItemToDatabase()
             navigateToExerciseListScreen()
         }) {
-            Text(text = "Add Item To Database")
+            Text(text = stringResource(R.string.add_item_to_database))
         }
         Button(onClick = {
             exerciseAddItemViewModel.addItemToRemote()
             navigateToExerciseListScreen()
         }) {
-            Text(text = "Add Item To Remote")
+            Text(text = stringResource(R.string.add_item_to_remote))
         }
         Button(onClick = {
             exerciseAddItemViewModel.addItemToRemoteAndDatabase()
             navigateToExerciseListScreen()
         }) {
-            Text(text = "Add Item To Database and Remote")
+            Text(text = stringResource(R.string.add_item_to_remote_and_database))
         }
         Button(onClick = {
             isContextMenuVisible = true

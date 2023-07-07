@@ -14,4 +14,6 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun registerUser(user: UserAddRemote): ResponseRemote<String> = userApi.registerUser(user)
 
     override suspend fun loginUser(user: UserLoginRemote): ResponseRemote<TokenRemote> = userApi.loginUser(user)
+
+    override suspend fun getId(token: String): ResponseRemote<String> = userApi.getId(token)
 }

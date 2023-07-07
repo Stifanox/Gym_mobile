@@ -5,6 +5,8 @@ import com.example.gym.data.remote.model.request.UserAddRemote
 import com.example.gym.data.remote.model.request.UserLoginRemote
 import com.example.gym.data.remote.model.response.ResponseRemote
 import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface UserApi {
@@ -14,4 +16,7 @@ interface UserApi {
     //FIXME: there is bug here will crush if login is not successful
     @POST("$PREFIX_USER/login")
     suspend fun loginUser(@Body user: UserLoginRemote):ResponseRemote<TokenRemote>
+
+    @GET("$PREFIX_USER/get-id")
+    suspend fun getId(@Header("Cookie") token:String):ResponseRemote<String>
 }

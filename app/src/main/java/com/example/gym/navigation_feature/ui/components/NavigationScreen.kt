@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.ListAlt
 import androidx.compose.material.icons.filled.Login
 import androidx.compose.material.icons.filled.Menu
@@ -18,6 +19,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.example.gym.R
+import com.example.gym.cycle_feature.ui.routes.CycleRoutes
+import com.example.gym.cycle_feature.ui.routes.cycleGraph
 import com.example.gym.domain.token.TokenManagerSharedPreferences
 import com.example.gym.exercise_feature.ui.routes.ExerciseRoutes
 import com.example.gym.exercise_feature.ui.routes.exerciseGraph
@@ -86,6 +89,7 @@ fun NavigationScreen() {
             loginGraph(navController)
             mainGraph(navController)
             exerciseGraph(navController)
+            cycleGraph(navController)
         }
     }
 }
@@ -97,6 +101,7 @@ fun createListOfItems(navController: NavController, closeDrawer: () -> Unit): Li
         ) {
             navController.navigate(LoginRoutes.HomeRoute.route){
                 launchSingleTop = true
+                popUpTo(MainRoutes.HomeRoute.route)
             }
             closeDrawer()
         },
@@ -106,8 +111,16 @@ fun createListOfItems(navController: NavController, closeDrawer: () -> Unit): Li
         ) {
             navController.navigate(ExerciseRoutes.ExerciseList.route){
                 launchSingleTop = true
+                popUpTo(MainRoutes.HomeRoute.route)
             }
             closeDrawer()
         },
+        MenuItemData(R.string.manage_cycles,Icons.Default.List){
+            navController.navigate(CycleRoutes.HomeRoute.route){
+                launchSingleTop = true
+                popUpTo(MainRoutes.HomeRoute.route)
+            }
+            closeDrawer()
+        }
     )
 }

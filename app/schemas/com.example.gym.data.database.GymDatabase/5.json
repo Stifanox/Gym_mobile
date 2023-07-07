@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 5,
-    "identityHash": "4613546c0c93452a914654c7cd61e77b",
+    "identityHash": "63728f9232ac0ab78c622b00cdd74425",
     "entities": [
       {
         "tableName": "exercise",
@@ -54,7 +54,7 @@
       },
       {
         "tableName": "training_cycle",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `user_id` INTEGER NOT NULL, `cycle_name` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `user_id` INTEGER, `cycle_name` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -66,7 +66,7 @@
             "fieldPath": "userId",
             "columnName": "user_id",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "cycleName",
@@ -200,7 +200,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4613546c0c93452a914654c7cd61e77b')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '63728f9232ac0ab78c622b00cdd74425')"
     ]
   }
 }

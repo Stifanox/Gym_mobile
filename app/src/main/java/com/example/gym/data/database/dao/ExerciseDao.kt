@@ -19,7 +19,7 @@ interface ExerciseDao {
     @Delete
     fun deleteExercise(exercise: ExerciseDatabase)
 
-    //TODO: fix this query ( when adding 2 same exercise_name solely to database without id_remote != NULL deletes both records)
+    //TODO: fix this query ( when adding 2 same exercise_name solely to database without id_remote != NULL deletes both records)a
     @Query("DELETE FROM exercise WHERE exercise_name IN (SELECT exercise_name FROM exercise GROUP BY exercise_name HAVING COUNT(exercise_name)>1 ) AND id_remote is NULL")
     fun removeDuplicates()
 }
