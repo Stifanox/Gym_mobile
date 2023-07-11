@@ -17,6 +17,7 @@ import com.example.gym.domain.common_functions.launchToast
 
 @Composable
 fun CycleAddScreen(
+    navigateToTrainingEditor: (String) -> Unit,
     cycleAddScreenViewModel: CycleAddScreenViewModel = hiltViewModel()
 ) {
 
@@ -28,17 +29,23 @@ fun CycleAddScreen(
     launchToast(context = context, dataToObserve = databaseSaveState)
     launchToast(context = context, dataToObserve = remoteSaveState)
 
-Column {
-    TextField(value = cycleState, onValueChange = { cycleAddScreenViewModel.setCycleName(it) })
-    Button(onClick = { cycleAddScreenViewModel.saveCycleToDatabase() }) {
-        Text(text = stringResource(id = R.string.add_item_to_database))
+    Column {
+        TextField(value = cycleState, onValueChange = { cycleAddScreenViewModel.setCycleName(it) })
+        Button(onClick = {
+            cycleAddScreenViewModel.saveCycleToDatabase()
+            navigateToTrainingEditor(cycleState.lowercase())
+        }) {
+            Text(text = stringResource(id = R.string.add_item_to_database))
+        }
+        Button(onClick = { cycleAddScreenViewModel.saveCycleToRemote() }) {
+            Text(text = stringResource(id = R.string.add_item_to_remote))
+        }
+        Button(onClick = {
+            cycleAddScreenViewModel.saveToDatabaseAndRemote()
+            navigateToTrainingEditor(cycleState.lowercase())
+        }) {
+            Text(text = stringResource(id = R.string.add_item_to_remote_and_database))
+        }
     }
-    Button(onClick = {cycleAddScreenViewModel.saveCycleToRemote()}) {
-        Text(text = stringResource(id = R.string.add_item_to_remote))
-    }
-    Button(onClick = { cycleAddScreenViewModel.saveToDatabaseAndRemote()}) {
-        Text(text = stringResource(id = R.string.add_item_to_remote_and_database))
-    }
-}
 
 }

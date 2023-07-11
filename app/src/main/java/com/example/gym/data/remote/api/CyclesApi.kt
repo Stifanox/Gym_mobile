@@ -4,8 +4,8 @@ import com.example.gym.data.remote.model.request.CycleAddRemote
 import com.example.gym.data.remote.model.request.CycleEditRemote
 import com.example.gym.data.remote.model.response.ResponseRemote
 import com.example.gym.data.remote.model.response.TrainingCycleRemote
-import okhttp3.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -35,4 +35,9 @@ interface CyclesApi {
         @Body cycle: CycleEditRemote
     ): ResponseRemote<String>
 
+    @DELETE("$PREFIX_CYCLES/{name}")
+    suspend fun deleteCycle(
+        @Header("Cookie") token: String,
+        @Path("name") cycleName:String
+    ):ResponseRemote<String>
 }

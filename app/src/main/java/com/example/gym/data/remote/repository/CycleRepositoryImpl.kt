@@ -26,4 +26,9 @@ class CycleRepositoryImpl @Inject constructor(
 
     override suspend fun editCycle(token: String, cycle: CycleEditRemote): ResponseRemote<String> =
         cyclesApi.editCycle(token, cycle)
+
+    override suspend fun deleteCycle(
+        token: String,
+        cycleName: String
+    ): ResponseRemote<String> = cyclesApi.deleteCycle(token, cycleName)
 }

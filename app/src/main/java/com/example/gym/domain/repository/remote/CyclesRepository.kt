@@ -22,4 +22,9 @@ interface CyclesRepository {
         token: String,
         cycle: CycleEditRemote
     ): ResponseRemote<String>
+
+    suspend fun deleteCycle(
+        token: String,
+        cycleName: String
+    ): ResponseRemote<String>
 }

@@ -35,4 +35,6 @@
     <string name="add_item_to_remote">Add Item To Remote</string>
     <string name="add_item_to_remote_and_database">Add Item To Database and Remote</string>
     <string name="database_save_error">There was an error while saving item</string>
+    <string name="cycle_add_database_error">Couldn\'t add cycle to server. Are you logged in?</string>
+    <string name="fetch_cycle_remote_error">Couldn\'t fetch cycles from remote. Are you logged in?</string>
 </resources>

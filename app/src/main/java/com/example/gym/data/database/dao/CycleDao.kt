@@ -22,6 +22,9 @@ interface CycleDao {
     fun addNewCycle(cycle:TrainingCycleDatabase)
 
     @Insert
+    fun addCycleList(cycles:List<TrainingCycleDatabase>)
+
+    @Insert
     fun addNewTrainingDayToCycle(trainingDayDatabase: TrainingDayDatabase)
 
     @Delete

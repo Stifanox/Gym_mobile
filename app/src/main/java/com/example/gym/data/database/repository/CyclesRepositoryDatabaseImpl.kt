@@ -23,4 +23,5 @@ class CyclesRepositoryDatabaseImpl @Inject constructor(
     override fun deleteCycle(cycle:TrainingCycleDatabase) = cycleDao.deleteCycle(cycle)
 
     override fun deleteTrainingDay(trainingDay: TrainingDayDatabase) = cycleDao.deleteTrainingDay(trainingDay)
+    override fun addCycleList(cycles: List<TrainingCycleDatabase>) = cycleDao.addCycleList(cycles)
 }
