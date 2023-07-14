@@ -5,6 +5,7 @@ import com.example.gym.domain.repository.remote.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ServiceComponent
 import dagger.hilt.android.components.ViewModelComponent
 
 @Module

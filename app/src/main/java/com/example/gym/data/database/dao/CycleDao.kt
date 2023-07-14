@@ -32,4 +32,7 @@ interface CycleDao {
 
     @Delete
     fun deleteTrainingDay(trainingDay:TrainingDayDatabase)
+
+    @Query("SELECT id FROM training_cycle WHERE cycle_name = :cycleName")
+    fun getIdFromCycleName(cycleName:String):Flow<Int?>
 }

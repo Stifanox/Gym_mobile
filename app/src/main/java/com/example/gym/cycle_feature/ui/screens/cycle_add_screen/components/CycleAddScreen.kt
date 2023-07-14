@@ -7,6 +7,7 @@ import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -37,7 +38,8 @@ fun CycleAddScreen(
         }) {
             Text(text = stringResource(id = R.string.add_item_to_database))
         }
-        Button(onClick = { cycleAddScreenViewModel.saveCycleToRemote() }) {
+        Button(onClick = { cycleAddScreenViewModel.saveCycleToRemote()
+        /* TODO: Make sure that this function is managed by work manager*/}) {
             Text(text = stringResource(id = R.string.add_item_to_remote))
         }
         Button(onClick = {

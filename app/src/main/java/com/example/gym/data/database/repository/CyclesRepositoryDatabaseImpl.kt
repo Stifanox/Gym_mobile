@@ -10,18 +10,23 @@ import javax.inject.Inject
 
 class CyclesRepositoryDatabaseImpl @Inject constructor(
     private val cycleDao: CycleDao
-):CyclesRepositoryDatabase {
+) : CyclesRepositoryDatabase {
 
     override fun getAllCycles(): Flow<List<TrainingCycleDatabase>> = cycleDao.getAllCycles()
 
-    override fun getAllTrainingDaysByCycleId(id:Int):Flow<List<TrainingDayWithName>> = cycleDao.getAllTrainingDaysByCycleId(id)
+    override fun getAllTrainingDaysByCycleId(id: Int): Flow<List<TrainingDayWithName>> =
+        cycleDao.getAllTrainingDaysByCycleId(id)
 
-    override fun addNewCycle(cycle:TrainingCycleDatabase) = cycleDao.addNewCycle(cycle)
+    override fun addNewCycle(cycle: TrainingCycleDatabase) = cycleDao.addNewCycle(cycle)
 
-    override fun addNewTrainingDayToCycle(trainingDayDatabase: TrainingDayDatabase) = cycleDao.addNewTrainingDayToCycle(trainingDayDatabase)
+    override fun addNewTrainingDayToCycle(trainingDayDatabase: TrainingDayDatabase) =
+        cycleDao.addNewTrainingDayToCycle(trainingDayDatabase)
 
-    override fun deleteCycle(cycle:TrainingCycleDatabase) = cycleDao.deleteCycle(cycle)
+    override fun deleteCycle(cycle: TrainingCycleDatabase) = cycleDao.deleteCycle(cycle)
 
-    override fun deleteTrainingDay(trainingDay: TrainingDayDatabase) = cycleDao.deleteTrainingDay(trainingDay)
+    override fun deleteTrainingDay(trainingDay: TrainingDayDatabase) =
+        cycleDao.deleteTrainingDay(trainingDay)
+
     override fun addCycleList(cycles: List<TrainingCycleDatabase>) = cycleDao.addCycleList(cycles)
+    override fun getIdFromCycleName(cycleName: String): Flow<Int?> = cycleDao.getIdFromCycleName(cycleName)
 }

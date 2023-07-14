@@ -23,4 +23,5 @@ interface CyclesRepositoryDatabase {
 
     fun addCycleList(cycles: List<TrainingCycleDatabase>)
 
+    fun getIdFromCycleName(cycleName:String):Flow<Int?>
 }
