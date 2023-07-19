@@ -27,6 +27,7 @@ import com.example.gym.domain.connection.ConnectivityObserver
 @Composable
 fun CycleScreen(
     navigateToAddScreen: () -> Unit,
+    navigateToTrainingEditScreen:(String) -> Unit,
     cycleScreenViewModel: CycleScreenViewModel = hiltViewModel()
 ) {
 
@@ -52,6 +53,7 @@ fun CycleScreen(
                 CycleListItem(
                     {cycleScreenViewModel.removeFromDatabase(it)},
                     {cycleScreenViewModel.removeFromRemoteAndDatabase(it)},
+                    {navigateToTrainingEditScreen(it.cycleName)},
                     name = it.cycleName.replaceFirstChar { name -> name.uppercase() },
                     isConnectedToInternet
                 )

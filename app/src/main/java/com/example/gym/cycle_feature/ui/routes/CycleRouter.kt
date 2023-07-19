@@ -18,16 +18,23 @@ fun NavGraphBuilder.cycleGraph(navController: NavController) {
                     launchSingleTop = true
                     popUpTo(CycleRoutes.HomeRoute.route)
                 }
-            })
+            },
+                {nameOfCycle ->
+                    navController.navigate("${CycleRoutes.TrainingEditorRoute.route}/$nameOfCycle"){
+                        launchSingleTop = true
+                        popUpTo(CycleRoutes.HomeRoute.route)
+                    }
+                })
         }
-        composable(route = "${CycleRoutes.TrainingEditorRoute.route}/{nameOfCycle}",
+        composable(
+            route = "${CycleRoutes.TrainingEditorRoute.route}/{nameOfCycle}",
             arguments = listOf(navArgument("nameOfCycle") { type = NavType.StringType })
         ) {
             TrainingEditor(it.arguments?.getString("nameOfCycle"))
         }
 
         composable(route = CycleRoutes.CycleAddRoute.route) {
-            CycleAddScreen({nameOfCycle ->
+            CycleAddScreen({ nameOfCycle ->
                 navController.navigate("${CycleRoutes.TrainingEditorRoute.route}/$nameOfCycle") {
                     launchSingleTop = true
                     popUpTo(CycleRoutes.HomeRoute.route)

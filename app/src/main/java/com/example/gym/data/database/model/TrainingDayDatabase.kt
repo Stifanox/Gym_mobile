@@ -11,6 +11,8 @@ data class TrainingDayDatabase(
     @ColumnInfo(name = "exercise_id") val exerciseId:Int,
     val weight:Int,
     val reps:Int,
+    //This column was added later and auto-migration can't handle it in proper way so it requires default value
+    @ColumnInfo(defaultValue = "0") val order:Int,
     @ColumnInfo(name = "training_cycle_id") val trainingCycleId:Int,
     val sets:Int
 )

@@ -15,7 +15,7 @@ interface CycleDao {
     @Query("SELECT *  FROM training_cycle")
     fun getAllCycles():Flow<List<TrainingCycleDatabase>>
 
-    @Query("SELECT * FROM training_day WHERE id = :id")
+    @Query("SELECT * FROM training_day WHERE training_cycle_id = :id")
     fun getAllTrainingDaysByCycleId(id:Int):Flow<List<TrainingDayWithName>>
 
     @Insert

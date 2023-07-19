@@ -16,6 +16,7 @@ import com.example.gym.domain.connection.ConnectivityObserver
 fun CycleListItem(
     removeFromDatabase:()->Unit,
     removeFromRemote:()->Unit,
+    navigateToTrainingEditScreen:()->Unit,
     name:String,
     isConnectedToNetwork:ConnectivityObserver.Status
 ){
@@ -24,7 +25,9 @@ fun CycleListItem(
     }
 
     Row{
-        Text(text = name)
+        Text(text = name, modifier = Modifier.clickable {
+            navigateToTrainingEditScreen()
+        })
         Icon(
             imageVector = Icons.Default.Delete,
             contentDescription = null,
