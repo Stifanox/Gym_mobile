@@ -26,6 +26,8 @@ fun TrainingEditor(
 
     val idOfTraining by trainingEditorViewModel.idTraining.collectAsState(initial = -1)
     val exerciseList by trainingEditorViewModel.exerciseList.collectAsState(initial = emptyList())
+    val listOfTrainings = trainingEditorViewModel.listOfTrainings
+
 
     LaunchedEffect(key1 = null) {
         trainingEditorViewModel.setIdTraining(nameOfCycle)
@@ -45,6 +47,17 @@ fun TrainingEditor(
                         }
                 )
             }
+        }
+
+        items(listOfTrainings, key = { item -> item.idOfItem }) {
+            ExerciseItemEditor(
+                exerciseList = exerciseList,
+                trainingData = it,
+                setReps = trainingEditorViewModel::setTrainingReps,
+                setSets = trainingEditorViewModel::setTrainingSets,
+                setExercise = trainingEditorViewModel::setTrainingExercise,
+                setWeight = trainingEditorViewModel::setTrainingWeight
+            )
         }
 
     }
